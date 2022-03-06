@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <title>防控管理侠 | 轨迹连线</title>
+        <link rel="icon" type="image/png" href="/static/images/favicon.ico" />
+        <link rel="apple-touch-icon" href="/static/images/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/static/images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/static/images/apple-touch-icon-114x114.png" />
+        <!--[if lt IE 9]>
+    <script src="/static/scripts/ie9.js">IE7_PNG_SUFFIX = ".png";</script>
+    <![endif]-->
+        <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet'
+              type='text/css' />
+        <link rel="stylesheet" href="/static/stylesheets/style.css" />
+        <link rel="stylesheet" href="/static/stylesheets/responsive.css" />
+        <script src="/static/scripts/jquery.min.js"></script>
+        <script src="/static/scripts/jquery.onebyone.min.js"></script>
+        <script src="/static/scripts/jquery.cookie.js"></script>
+        <script src="/static/scripts/jquery.touchwipe.min.js"></script>
+        <script src="/static/scripts/js_func.js"></script>
+        <script src="/static/scripts/admin_account_judge.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <body>
+        <div class="wraper">
+            <header class="header">
+                <a class="logo" href={% url 'home' %}>construct</a>
+                <nav>
+                    <!-- top menu -->
+                    <ul>
+                        <li>
+                            <a href={% url 'home' %}>首页</a>
+                        </li>
+
+                        <li id=LiInsert>
+                            <a href={% url 'our_track_line' %}>轨迹连线</a>
+                            <ul>
+                                <li>
+                                    <a href={% url 'our_track_heat' %}>智能可视化</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'our_track_in_heat' %}>智能可视化(全)</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'our_track_line' %}>轨迹连线</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'our_track_in_line' %}>轨迹连线(全)</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'statistic_data' %}>疫情数据可视化</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'personnel_search_with_status' %}>人员查询</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href={% url 'function_introduction' %}>功能介绍</a>
+                        </li>
+                        <li>
+                            <a href={% url 'my_track' %}>个人轨迹</a>
+                            <ul>
+                                <li>
+                                    <a href={% url 'my_track' %}>我的轨迹</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'my_track_in_' %}>我的轨迹(全)</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'track_total' %}>智能轨迹预测</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'my_track_login' %}>登录</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'my_track_register' %}>注册</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- /top menu -->
+                </nav>
+            </header>
+        </div>
+
+        <!-- 导航头栏 -->
+        <div class="wraper">
+            <div class="fallback">
+                <img src="../static/images/sliders/home_page_3/home_page_3_fallback.jpg" alt="" />
+            </div>
+            <div id="piecemaker">
+                <!--<p>Put your alternative Non Flash content here.</p>-->
+            </div>
+        </div>
+        <!-- /piecemaker slider -->
+
+        <div class="content_block">
+            <!-- text bar2 -->
+            <div class="text_bar2">
+                <div class="wraper">
+                    <h2>疑似病例患者轨迹连接展示 <span>针对石家庄市疑似病例患者的轨迹连接展示，时间节点为2021年1月1日至1月24日，是疫情快速好转的二次传染。</span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+
+        <!--正文-->
+        <div class="content_block">
+
+            <div class="wraper wraper_typ">
+
+
+                <div style="height: 300px">
+                    <iframe style="width: 100%;height: 200%" src={% url 'our_track_in_line' %} frameborder="0"
+                            scrolling="no"></iframe>
+                </div>
+
+                <h4 align="center" class="bord" style=color:white;>智能可视地图加载中</h4>
+                <div class="智能可视地图加载中">
+                    <h1> </h1>
+                    <p> </p>
+                    <p> </p>
+                    <p> </p>
+                    <p> </p>
+                    <p> </p>
+                    <p> </p>
+                </div>
+                <!-- 开始编写下面的文案 -->
+                <div class="headings">
+
+                    <h3 class="bord">地图应用</h3>
+
+                    <p>将患者的移动轨迹作为疫情的传播路径，患者在被确诊前，身上携带有新冠肺炎病毒，其移动轨迹中随时会传播给别人，因此将新乐市、辛集市、栾城区、建通街道、裕华区等石家庄市中心作为疫情风险较为严重的地点，请大家注意防范。</p>
+
+                </div>
+            </div>
+        </div>
+        <div class="content_block">
+            <div class="wraper">
+                <!-- team_option2 -->
+                <div class="team_option team_option2">
+                    <h4>典型轨迹分析</h4>
+                    <ul>
+                        <li>
+                            <div class="img bwWrapper">
+                                <img src="../static/images/line/our_track_line4.jpg" width="442" height="227" alt="" />
+                            </div>
+                            <div class="desc">
+                                <p align="center">
+                                    <strong>患者移动轨迹</strong>
+                                    <br />
+                                </p>
+                                <p>选取在二次疫情区间石家庄市的10条有代表性的患者移动轨迹信息，由于患者所携带新冠疫情病毒，在移动轨迹中，会存在一定的传染性，尤其在图中的起点、终点以及中间停留的地方，会有一定的传染区域。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img bwWrapper">
+                                <img src="../static/images/line/our_track_line5.png" width="442" height="227" alt="" />
+                            </div>
+                            <div class="desc">
+                                <p align="center">
+                                    <strong>智能传播效果</strong>
+                                    <br />
+                                </p>
+                                <p>再此期间的河北省新增确诊病例由下降的趋势，但是在全国范围内仍是一个平稳状态，这需要我们河北政府要保持疫情防控力度，并加大对其他省份的支援力度和关怀。</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /team_option2 -->
+            </div>
+        </div>
+
+
+        <div class="content_block">
+
+            <div class="wraper">
+
+                <!-- testimonial_option2 -->
+                <div class="testimonial_option testimonial_option2 c_after">
+                    <h4 class="bord">具体细节分析</h4>
+                    <ul>
+                        <li>
+                            <div class="img bwWrapper">
+                                <img src="../static/images/line/our_track_line1.png" width="279" height="141" alt="" />
+                                <p>
+                                    <strong>预测累计确诊人数</strong>
+                                </p>
+                            </div>
+                            <div class="desc">
+                                <blockquote>
+                                    <p>未来一个月石家庄市的确诊人数为1438，以每周7.5%增长，累计确诊人数增长较为缓慢，基本上符合实际情况，并且预测值处于95%的置信区间上，因此有理由相信通过时间序列所得到的结果可以反映累计确诊人数的大概走向以及趋势。</p>
+                                </blockquote>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img bwWrapper">
+                                <img src="../static/images/line/our_track_line2.png" width="279" height="141" alt="" />
+                                <p>
+                                    <strong>患者症状分布</strong>
+                                </p>
+                            </div>
+                            <div class="desc">
+                                <blockquote>
+                                    <p>可以发现发热、干咳、乏力、咳痰是新冠肺炎症状的典型特征，并且在少数患者中，出现了十余项其他症状，由于新冠肺炎的致病机理尚不知晓，我们并不能将其他症状进行忽略。</p>
+                                </blockquote>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img bwWrapper">
+                                <img src="../static/images/line/our_track_line3.png" width="279" height="141" alt="" />
+                                <p>
+                                    <strong>河北省新增确诊病例统计</strong>
+                                </p>
+                            </div>
+                            <div class="desc">
+                                <blockquote>
+                                    <p>再此期间的河北省新增确诊病例由下降的趋势，但是在全国范围内仍是一个平稳状态，这需要我们河北政府要保持疫情防控力度，并加大对其他省份的支援力度和关怀。</p>
+                                </blockquote>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /testimonial_option2 -->
+            </div>
+        </div>
+        <!-- footer -->
+        <!-- social block -->
+        <div class="social_block">
+            <div class="wraper">
+                <p>Stay connected with us in your favorite flavor!</p>
+                <ul>
+                    <li class="facebook">
+                        <a href="#">Facebook</a>
+                    </li>
+                    <li class="twitter">
+                        <a href="#">Twitter</a>
+                    </li>
+                    <li class="linkedin">
+                        <a href="#">LinkedIn</a>
+                    </li>
+                    <li class="rss">
+                        <a href="#">RSS</a>
+                    </li>
+                    <li class="dribbble">
+                        <a href="#">Dribbble</a>
+                    </li>
+                    <li class="google">
+                        <a href="#">Google+</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /social block -->
+
+        <div class="footer">
+            <footer>
+                <!-- bottom about -->
+                <div class="bottom_about">
+                    <p>
+                        <img style="height: 100%;width: 100%" src="/static/images/logo1.png" alt="" />
+                    </p>
+                    <p>为了方便疫情期间管理工作的展开，引导人们的出行安全，疫情防控预警系统为此而建立。
+                        通过数据采集，融合数据分析，排查和可视化智能解析。
+                        对用户出行进行直接引导，做到有效的对疫情进行实时监管，控制疫情，保护人们的健康安全。</p>
+                </div>
+                <!-- /bottom about -->
+                <!-- recent tweets -->
+                <div class="recent_tweets">
+                    <h3>
+                        <span>最近更新</span>
+                    </h3>
+                    <ul>
+                        <li>
+                            <a href="#">@laurakalbag</a>暂无
+                        </li>
+                        {# <li>
+                            <a href="#">@laurakalbag</a> I will be very soon. Ase result reco endation <a href="#">31 minutes#}
+                                {# ago</a>
+                        </li>#}
+                        {# <li>
+                            <a href="#">@laurakalbag</a> you got chocolates!? That's i I'm signing up. <a href="#">37 minutes#}
+                                {# ago</a>
+                        </li>#}
+                    </ul>
+                </div>
+                <!-- /recent tweets -->
+                <!-- recent posts -->
+                <div class="recent_posts">
+                    <h3>
+                        <span>新加功能</span>
+                    </h3>
+                    <ul>
+                        <li>
+                            <a href="#">新的功能，文本详细说明</a>
+                        </li>
+                        <li>
+                            <a href="#">新的功能，文本详细说明</a>
+                        </li>
+                        <li>
+                            <a href="#">新的功能，文本详细说明</a>
+                        </li>
+                        <li>
+                            <a href="#">新的功能，文本详细说明</a>
+                        </li>
+                        <li>
+                            <a href="#">新的功能，文本详细说明</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /recent posts -->
+                <!-- subscribe block -->
+                <div class="subscribe_block">
+                    <h3>
+                        <span>加入我们</span>
+                    </h3>
+                    <form method="post" action="#" />
+                    <p>
+                        <input type="text" id="name" value="NAME ..." />
+                    </p>
+                    <p>
+                        <input type="text" id="email" value="EMAIL ..." />
+                    </p>
+                    <p>
+                        <input type="submit" value="提交" />
+                    </p>
+                    </form>
+                </div>
+                <!-- /subscribe block -->
+            </footer>
+        </div>
+
+        <!-- copyright -->
+        <div class="copyright">
+            <div class="wraper">
+                <p>
+                    <span>测试版</span>v 0.01<a href="#">RSS</a>
+                    <a href="#">Comments</a>
+                </p>
+                <a class="top" href="#">Back to the top</a>
+            </div>
+        </div>
+        <!-- /copyright -->
+        <!-- /footer -->
+    </body>
+
+</html>

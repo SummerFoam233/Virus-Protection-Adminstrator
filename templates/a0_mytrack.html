@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <title>防控管理侠 | 个人轨迹</title>
+        <link rel="icon" type="image/png" href="/static/images/favicon.ico" />
+        <link rel="apple-touch-icon" href="/static/images/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/static/images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/static/images/apple-touch-icon-114x114.png" />
+        <!--[if lt IE 9]>
+    <script src="/static/scripts/ie9.js">IE7_PNG_SUFFIX = ".png";</script>
+    <![endif]-->
+        <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet'
+              type='text/css' />
+        <link rel="stylesheet" href="/static/stylesheets/style.css" />
+        <link rel="stylesheet" href="/static/stylesheets/responsive.css" />
+        <script src="/static/scripts/jquery.min.js"></script>
+        <script src="/static/scripts/jquery.onebyone.min.js"></script>
+        <script src="/static/scripts/jquery.cookie.js"></script>
+        <script src="/static/scripts/jquery.touchwipe.min.js"></script>
+        <script src="/static/scripts/js_func.js"></script>
+        <script src="/static/scripts/admin_account_judge.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <body>
+
+        <div class="wraper">
+            <header class="header">
+                <a class="logo" href={% url 'home' %}>construct</a>
+                <nav>
+                    <!-- top menu -->
+                    <ul>
+                        <li>
+                            <a href={% url 'home' %}>首页</a>
+                        </li>
+
+                        <li id=LiInsert>
+                            <a href={% url 'our_track_heat' %}>智能可视化</a>
+                            <ul>
+                                <li>
+                                    <a href={% url 'our_track_heat' %}>智能可视化</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'our_track_in_heat' %}>智能可视化(全)</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'our_track_line' %}>轨迹连线</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'our_track_in_line' %}>轨迹连线(全)</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'statistic_data' %}>疫情数据可视化</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'personnel_search_with_status' %}>人员查询</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href={% url 'function_introduction' %}>功能介绍</a>
+                        </li>
+                        <li>
+                            <a href={% url 'my_track' %}>个人轨迹</a>
+                            <ul>
+                                <li>
+                                    <a href={% url 'my_track' %}>我的轨迹</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'my_track_in_' %}>我的轨迹(全)</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'track_total' %}>智能轨迹预测</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'my_track_login' %}>登录</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'my_track_register' %}>注册</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- /top menu -->
+                </nav>
+            </header>
+        </div>
+
+
+
+        <div class="wraper">
+            <div class="fallback">
+                <img src="../static/images/sliders/home_page_3/home_page_3_fallback.jpg" alt="" />
+            </div>
+            <div id="piecemaker">
+            </div>
+        </div>
+        <div class="content_block">
+            <!-- text bar2 -->
+            <div class="text_bar2">
+                <div class="wraper">
+                    <h2>个人过去24小时轨迹展示<span> 根据手机app进行人机交互，传递过去24小时个人的手机位置，并进行停留点的连接。</span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="content_block">
+
+            <div class="wraper wraper_typ">
+                <div style="height: 300px">
+                    <iframe style="width: 100%;height: 200%" src={% url 'my_track_in_' %} frameborder="0" scrolling="no"></iframe>
+                </div>
+
+
+                <h4 align="center" class="bord"></h4>
+                <!-- Headings -->
+                <div class="智能可视地图加载中">
+                    <h1> </h1>
+                    <p> </p>
+                    <p> </p>
+                    <p> </p>
+                    <p> </p>
+                    <p> </p>
+                    <p> </p>
+                    <p> </p>
+                </div>
+                <div class="headings">
+                    <h3 class="bord">个人轨迹介绍</h3>
+
+                    <p>通过疫情防控app将自己过去24小时的位置信息传送到终端，若两小时位置没有离开在以20米为半径的区域，则标记为停留点，将24小时中的停留点并进行标记。
+
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+        <div class="content_block">
+            <div class="wraper">
+                <!-- testimonial_option3 -->
+                <div class="testimonial_option testimonial_option3 c_after">
+                    <h4 class="bord">所在地区温馨提示</h4>
+                    <ul>
+                        <li>
+                            <div class="desc">
+                                <blockquote>
+                                    <p>"石家庄市第五医院已全部腾空，全力收治新冠肺炎患者。其医院为新冠肺炎患者的医治聚集地，对于二次疫情回弹，石家庄市第五医院奋战在一线的医生共有250多人，分成了21个梯队。建议没有感染新冠人员少出行此区域。"</p>
+                                </blockquote>
+                                <p class="tit">
+                                    <strong>石家庄市第五医院</strong>
+                                </p>
+                                <blockquote>
+                                    <p>"疫情突发，河北省胸科医院作为新冠肺炎省级定点救治医院，再一次成为救治主战场，也成为全社会关注的焦点。为了疫情救治准备病房325间、床位650张，并全部进行了消杀保洁。据救治需要和防控要求，我院病房改造完毕，共设置隔离病区19个。至此，院内多学科救治专家组从25人充实到30人，19个一线救治梯队组建起来，医疗设备也到位。新冠患者收治条件全部具备。"</p>
+                                </blockquote>
+                                <p class="tit">
+                                    <strong>河北省胸科医院</strong>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="desc">
+                                <blockquote>
+                                    <p>"在2020年12月25日有一确诊病例经过此场景，当日由负压救护车转运至石家庄市第五医院。在2020年12月11日有一确诊病例经过此场景。当日12点转诊到新乐市医院后返回此场景。藁城区刘家佐村是石家庄疫情较为严重的地区，建议没有必要不要经过此区域。"</p>
+                                </blockquote>
+                                <p class="tit">
+                                    <strong>藁城区刘家佐村收购点</strong>
+                                </p>
+                                <blockquote>
+                                    <p>"2020年12月28日，疑似病例患者乘坐租用大巴车到机场北路附近欧景生态苑参加婚礼，1月3日核酸检测结果呈阳性，当日由120负压救护车转运至石家庄市第五医院，1月9日诊断为确诊病例。建议没有必要不要经过此区域。"</p>
+                                </blockquote>
+                                <p class="tit">
+                                    <strong>机场北路附近欧景生态苑</strong>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /testimonial_option3 -->
+
+            </div>
+        </div>
+
+
+
+
+        <div class="content_block">
+            <div class="wraper">
+                <!-- pricing option -->
+                <div class="pricing_option">
+                    <h4 class="bord">所经过地区疫情数据</h4>
+                </div>
+                <!-- /pricing option -->
+                <!-- pricing option3 -->
+                <div class="pricing_option pricing_option3">
+                    <ul>
+                        <li>
+                            <h4>累计确诊病例数量</h4>
+                            <div class="price">
+                                <span>1321</span>
+                                <sup> 例</sup>
+                                <em>daily</em>
+                            </div>
+                            <p>过去一周变化情况：</p>
+                            <p>10.24：累计1321例</p>
+                            <p>10.23：累计1320例</p>
+                            <p>10.22：累计1318例</p>
+                            <p>10.21：累计1318例</p>
+                            <p>10.20：累计1318例</p>
+                            <p>10.19：累计1318例</p>
+                        </li>
+                        <li class="active">
+                            <div class="active_bg">
+                                <h4>新增确诊病例数量</h4>
+                                <div class="price">
+                                    <span>4</span>
+                                    <sup> 例</sup>
+                                    <em>daily</em>
+                                </div>
+                                <p>过去一周变化情况：</p>
+                                <p>10.24：新增1例</p>
+                                <p>10.23：新增2例</p>
+                                <p>10.22：新增0例</p>
+                                <p>10.21：新增0例</p>
+                                <p>10.20：新增0例</p>
+                                <p>10.19：新增0例</p>
+                            </div>
+                        </li>
+                        <li>
+                            <h4>累计治愈病例数量</h4>
+                            <div class="price">
+                                <span>1310</span>
+                                <sup> 例</sup>
+                                <em>daily</em>
+                            </div>
+                            <p>过去一周变化情况：</p>
+                            <p>10.24：累计1310例</p>
+                            <p>10.23：累计1310例</p>
+                            <p>10.22：累计1310例</p>
+                            <p>10.21：累计1310例</p>
+                            <p>10.20：累计1310例</p>
+                            <p>10.19：累计1310例</p>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- /pricing option3 -->
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        <!-- footer -->
+        <!-- social block -->
+        <div class="social_block">
+            <div class="wraper">
+                <p>Stay connected with us in your favorite flavor!</p>
+                <ul>
+                    <li class="facebook">
+                        <a href="#">Facebook</a>
+                    </li>
+                    <li class="twitter">
+                        <a href="#">Twitter</a>
+                    </li>
+                    <li class="linkedin">
+                        <a href="#">LinkedIn</a>
+                    </li>
+                    <li class="rss">
+                        <a href="#">RSS</a>
+                    </li>
+                    <li class="dribbble">
+                        <a href="#">Dribbble</a>
+                    </li>
+                    <li class="google">
+                        <a href="#">Google+</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /social block -->
+
+        <div class="footer">
+            <footer>
+                <!-- bottom about -->
+                <div class="bottom_about">
+                    <p>
+                        <img style="height: 100%;width: 100%" src="/static/images/logo1.png" alt="" />
+                    </p>
+                    <p>为了方便疫情期间管理工作的展开，引导人们的出行安全，疫情防控预警系统为此而建立。
+                        通过数据采集，融合数据分析，排查和可视化智能解析。
+                        对用户出行进行直接引导，做到有效的对疫情进行实时监管，控制疫情，保护人们的健康安全。</p>
+                </div>
+                <!-- /bottom about -->
+                <!-- recent tweets -->
+                <div class="recent_tweets">
+                    <h3>
+                        <span>最近更新</span>
+                    </h3>
+                    <ul>
+                        <li>
+                            <a href="#">@laurakalbag</a>暂无
+                        </li>
+                        {# <li>
+                            <a href="#">@laurakalbag</a> I will be very soon. Ase result reco endation <a href="#">31 minutes#}
+                                {# ago</a>
+                        </li>#}
+                        {# <li>
+                            <a href="#">@laurakalbag</a> you got chocolates!? That's i I'm signing up. <a href="#">37 minutes#}
+                                {# ago</a>
+                        </li>#}
+                    </ul>
+                </div>
+                <!-- /recent tweets -->
+                <!-- recent posts -->
+                <div class="recent_posts">
+                    <h3>
+                        <span>新加功能</span>
+                    </h3>
+                    <ul>
+                        <li>
+                            <a href="#">新的功能，文本详细说明</a>
+                        </li>
+                        <li>
+                            <a href="#">新的功能，文本详细说明</a>
+                        </li>
+                        <li>
+                            <a href="#">新的功能，文本详细说明</a>
+                        </li>
+                        <li>
+                            <a href="#">新的功能，文本详细说明</a>
+                        </li>
+                        <li>
+                            <a href="#">新的功能，文本详细说明</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /recent posts -->
+                <!-- subscribe block -->
+                <div class="subscribe_block">
+                    <h3>
+                        <span>加入我们</span>
+                    </h3>
+                    <form method="post" action="#" />
+                    <p>
+                        <input type="text" id="name" value="NAME ..." />
+                    </p>
+                    <p>
+                        <input type="text" id="email" value="EMAIL ..." />
+                    </p>
+                    <p>
+                        <input type="submit" value="提交" />
+                    </p>
+                    </form>
+                </div>
+                <!-- /subscribe block -->
+            </footer>
+        </div>
+
+        <!-- copyright -->
+        <div class="copyright">
+            <div class="wraper">
+                <p>
+                    <span>测试版</span>v 0.01<a href="#">RSS</a>
+                    <a href="#">Comments</a>
+                </p>
+                <a class="top" href="#">Back to the top</a>
+            </div>
+        </div>
+        <!-- /copyright -->
+        <!-- /footer -->
+    </body>
+
+</html>

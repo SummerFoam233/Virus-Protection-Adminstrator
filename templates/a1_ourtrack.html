@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <title>防控管理侠 | 智能可视化</title>
+        <link rel="icon" type="image/png" href="/static/images/favicon.ico" />
+        <link rel="apple-touch-icon" href="/static/images/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/static/images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/static/images/apple-touch-icon-114x114.png" />
+        <!--[if lt IE 9]>
+    <script src="/static/scripts/ie9.js">IE7_PNG_SUFFIX = ".png";</script>
+    <![endif]-->
+        <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet'
+              type='text/css' />
+        <link rel="stylesheet" href="/static/stylesheets/style.css" />
+        <link rel="stylesheet" href="/static/stylesheets/responsive.css" />
+        <script src="/static/scripts/jquery.min.js"></script>
+        <script src="/static/scripts/jquery.onebyone.min.js"></script>
+        <script src="/static/scripts/jquery.cookie.js"></script>
+        <script src="/static/scripts/jquery.touchwipe.min.js"></script>
+        <script src="/static/scripts/js_func.js"></script>
+        <script src="/static/scripts/admin_account_judge.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <style>
+            p {text-indent:2em;} 
+     </style>
+    </head>
+    <body>
+        <div class="wraper">
+            <header class="header">
+                <a class="logo" href={% url 'home' %}>construct</a>
+                <nav>
+                    <!-- top menu -->
+                    <ul>
+                        <li>
+                            <a href={% url 'home' %}>首页</a>
+                        </li>
+
+                        <li id=LiInsert>
+                            <a href={% url 'our_track_line' %}>智能可视化</a>
+                            <ul>
+                                <li>
+                                    <a href={% url 'our_track_heat' %}>智能可视化</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'our_track_in_heat' %}>智能可视化(全)</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'our_track_line' %}>轨迹连线</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'our_track_in_line' %}>轨迹连线(全)</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'statistic_data' %}>疫情数据可视化</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'personnel_search_with_status' %}>人员查询</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href={% url 'function_introduction' %}>功能介绍</a>
+                        </li>
+                        <li>
+                            <a href={% url 'my_track' %}>个人轨迹</a>
+                            <ul>
+                                <li>
+                                    <a href={% url 'my_track' %}>我的轨迹</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'my_track_in_' %}>我的轨迹(全)</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'track_total' %}>智能轨迹预测</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'my_track_login' %}>登录</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'my_track_register' %}>注册</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- /top menu -->
+                </nav>
+            </header>
+        </div>
+
+        <div class="content_block">
+
+            <div class="wraper wraper_typ">
+
+                <div style="height: 300px">
+                    <iframe style="width: 100%;height: 200%" src={% url 'our_track_in_heat' %} frameborder="0"
+                            scrolling="no"></iframe>
+                </div>
+                <!-- Headings -->
+                <h4 align="center" class="bord" style=color:white;></h4>
+                <div class="智能可视地图加载中">
+                    <h1> </h1>
+                    <p> </p>
+                    <p> </p>
+                    <p> </p>
+                    <p> </p>
+                    <p> </p>
+                    <p> </p>
+                </div>
+
+
+                <!-- 开始编写下面的文案 -->
+                <div class="headings">
+
+                    <h3 class="bord">地图应用</h3>
+
+                    <p> 可视化采用的为世界地图，重点对国内各地区的疫情情况进行可视化展示。地图中地点可以细化到省市区镇乡村以及各个国道及主干街道。地图搜集从2020年2月1日起每日的全国疫情数据，并用热力图形式显示，以颜色警示疫情严重程度，红色表示疫情高风险集中点，周围扩散影响地点为中高风险地区，中低风险地区，低风险地区分别用黄色，绿色，蓝色表示。</p>
+
+                </div>
+
+
+                <!-- /HTML Styles -->
+
+                <h3 class="bord">地图简述</h3>
+                <!-- Dropcap -->
+                <div class="地图简述">
+                    <p>用户可通过对地图进行操作，获取全国实时疫情情况，以及历史疫情情况。通过地图左上角加减符号实现地图的缩放；通过拖动地图下方日期进度条选择地图展示对应日期疫情情况；通过拖动fps进度条调整图片缩放的画质流畅度。通过智可视化地图，用户可以方便快捷的掌握疫情情况，从一定程度上指导出行者规划安全的出行路线，防止健康人员进入疫情高危区，降低被传染风险。</p>
+                </div>
+                <!-- /Dropcap -->
+
+                <h3 class="bord">辅助说明</h3>
+                <!-- Blockquote -->
+                <div class="辅助说明">
+                    <blockquote>
+                        <p>地图可视化采用的数据均为真实数据，但是为了便于用户观察，以及考虑到地图放大范围的局限性，将感染者出行轨迹点中，间距较小的位置点设置为同一个风险位置点。</p>
+                    </blockquote>
+                </div>
+                <!-- /Blockquote -->
+
+                <h3 class="bord">防控注意事项</h3>
+                <!-- Bullets &amp; Lists -->
+                <div class="bullets_lists c_after">
+                    <ul class="arrows_list">
+                        <li>购物娱乐要注意：</li>
+                        <li>居家防疫要注意：</li>
+                        <li>景区旅游要注意：</li>
+                        <li>外出聚餐要注意：</li>
+                    </ul>
+                    <ul>
+                        <li>冷冻食品不沾手</li>
+                        <li>消毒通风勤打扫</li>
+                        <li>热门景点谨慎挑</li>
+                        <li>家庭聚餐要减少</li>
+                    </ul>
+                    <ul>
+                        <li>一米距离要坚守</li>
+                        <li>自测体温先做好</li>
+                        <li>网络购票比较好</li>
+                        <li>分餐公筷须倡导</li>
+                    </ul>
+                    <ul>
+                        <li>家庭储备体温计</li>
+                        <li>居家环境要通风</li>
+                        <li>备个人防护用品</li>
+                        <li>非必建议不出行</li>
+                    </ul>
+                    <ul>
+                        <li>一患一固定的陪护政策</li>
+                        <li>督导防疫措施落实情况</li>
+                        <li>可以细化各项防控措施</li>
+                        <li>加强公务交往活动防控</li>
+                    </ul>
+                </div>
+                <!-- /Bullets &amp; Lists -->
+
+                <!-- /Columns -->
+
+            </div>
+        </div>
+
+        <!-- footer -->
+        <!-- social block -->
+        <div class="social_block">
+            <div class="wraper">
+                <p>Stay connected with us in your favorite flavor!</p>
+                <ul>
+                    <li class="facebook">
+                        <a href="#">Facebook</a>
+                    </li>
+                    <li class="twitter">
+                        <a href="#">Twitter</a>
+                    </li>
+                    <li class="linkedin">
+                        <a href="#">LinkedIn</a>
+                    </li>
+                    <li class="rss">
+                        <a href="#">RSS</a>
+                    </li>
+                    <li class="dribbble">
+                        <a href="#">Dribbble</a>
+                    </li>
+                    <li class="google">
+                        <a href="#">Google+</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /social block -->
+
+        <div class="footer">
+            <footer>
+                <!-- bottom about -->
+                <div class="bottom_about">
+                    <p>
+                        <img style="height: 100%;width: 100%" src="/static/images/logo1.png" alt="" />
+                    </p>
+                    <p>为了方便疫情期间管理工作的展开，引导人们的出行安全，疫情防控预警系统为此而建立。
+                        通过数据采集，融合数据分析，排查和可视化智能解析。
+                        对用户出行进行直接引导，做到有效的对疫情进行实时监管，控制疫情，保护人们的健康安全。</p>
+                </div>
+                <!-- /bottom about -->
+                <!-- recent tweets -->
+                <div class="recent_tweets">
+                    <h3>
+                        <span>最近更新</span>
+                    </h3>
+                    <ul>
+                        <li>
+                            <a href="#">@laurakalbag</a>暂无
+                        </li>
+                        {# <li>
+                            <a href="#">@laurakalbag</a> I will be very soon. Ase result reco endation <a href="#">31 minutes#}
+                                {# ago</a>
+                        </li>#}
+                        {# <li>
+                            <a href="#">@laurakalbag</a> you got chocolates!? That's i I'm signing up. <a href="#">37 minutes#}
+                                {# ago</a>
+                        </li>#}
+                    </ul>
+                </div>
+                <!-- /recent tweets -->
+                <!-- recent posts -->
+                <div class="recent_posts">
+                    <h3>
+                        <span>新加功能</span>
+                    </h3>
+                    <ul>
+                        <li>
+                            <a href="#">新的功能，文本详细说明</a>
+                        </li>
+                        <li>
+                            <a href="#">新的功能，文本详细说明</a>
+                        </li>
+                        <li>
+                            <a href="#">新的功能，文本详细说明</a>
+                        </li>
+                        <li>
+                            <a href="#">新的功能，文本详细说明</a>
+                        </li>
+                        <li>
+                            <a href="#">新的功能，文本详细说明</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /recent posts -->
+                <!-- subscribe block -->
+                <div class="subscribe_block">
+                    <h3>
+                        <span>加入我们</span>
+                    </h3>
+                    <form method="post" action="#" />
+                    <p>
+                        <input type="text" id="name" value="NAME ..." />
+                    </p>
+                    <p>
+                        <input type="text" id="email" value="EMAIL ..." />
+                    </p>
+                    <p>
+                        <input type="submit" value="提交" />
+                    </p>
+                    </form>
+                </div>
+                <!-- /subscribe block -->
+            </footer>
+        </div>
+
+        <!-- copyright -->
+        <div class="copyright">
+            <div class="wraper">
+                <p>
+                    <span>测试版</span>v 0.01<a href="#">RSS</a>
+                    <a href="#">Comments</a>
+                </p>
+                <a class="top" href="#">Back to the top</a>
+            </div>
+        </div>
+        <!-- /copyright -->
+        <!-- /footer -->
+    </body>
+
+</html>

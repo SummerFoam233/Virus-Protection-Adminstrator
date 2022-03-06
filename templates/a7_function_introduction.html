@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <title>防控管理侠 | 功能介绍</title>
+        <link rel="icon" type="image/png" href="../static/images/favicon.ico" />
+        <link rel="apple-touch-icon" href="../static/images/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="../static/images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="../static/images/apple-touch-icon-114x114.png" />
+        <!--[if lt IE 9]>
+<script src="../static/scripts/ie9.js">IE7_PNG_SUFFIX=".png";</script>
+<![endif]-->
+        <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css' />
+        <link rel="stylesheet" href="../static/stylesheets/style.css" />
+        <link rel="stylesheet" href="../static/stylesheets/responsive.css" />
+        <link rel="stylesheet" href="../static/stylesheets/prettyPhoto.css" />
+        <script src="../static/scripts/jquery.min.js"></script>
+        <script src="../static/scripts/jquery.bxSlider.min.js"></script>
+        <script src="../static/scripts/jquery.faq.js"></script>
+        <script src="../static/scripts/jquery.prettyPhoto.js"></script>
+        <script src="../static/scripts/jquery.blackandwhite.min.js"></script>
+        <script src="/static/scripts/jquery.onebyone.min.js"></script>
+        <script src="/static/scripts/jquery.cookie.js"></script>
+        <script src="/static/scripts/jquery.touchwipe.min.js"></script>
+        <script src="../static/scripts/js_func.js"></script>
+        <script src="/static/scripts/admin_account_judge.js"></script>
+        <script>
+            $(function(){
+    $(".gallery a[rel^='prettyPhoto']").prettyPhoto({theme: 'dark_rounded'});
+    $('.clients_slider').bxSlider({
+        auto: false,
+        controls : false,
+        mode: 'fade',
+        pager: true
+    });
+    $('.recent_slider').bxSlider({
+        auto: false,
+        displaySlideQty: 1,
+        moveSlideQty: 1,
+        speed : 1000
+    });
+    $('#faq').dltoggle();
+    $("#open").click(function(event){
+      $('#faq').dltoggle_show();
+      return false;
+    });
+    $("#close").click(function(event){
+      $('#faq').dltoggle_hide();
+      return false;
+    });
+    $('.bwWrapper').BlackAndWhite({
+        hoverEffect : true,
+        webworkerPath : false,
+        responsive:true,
+        invertHoverEffect:false
+    });
+})
+</script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <body>
+        <div class="wraper">
+            <header class="header">
+                <a class="logo" href={% url 'home' %}>construct</a>
+                <nav>
+                    <!-- top menu -->
+                    <ul>
+                        <li>
+                            <a href={% url 'home' %}>首页</a>
+                        </li>
+
+                        <li id=LiInsert>
+                            <a href={% url 'our_track_heat' %}>智能可视化</a>
+                            <ul>
+                                <li>
+                                    <a href={% url 'our_track_heat' %}>智能可视化</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'our_track_in_heat' %}>智能可视化(全)</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'our_track_line' %}>轨迹连线</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'our_track_in_line' %}>轨迹连线(全)</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'statistic_data' %}>疫情数据可视化</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'personnel_search_with_status' %}>人员查询</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href={% url 'function_introduction' %}>功能介绍</a>
+                        </li>
+                        <li>
+                            <a href={% url 'my_track' %}>个人轨迹</a>
+                            <ul>
+                                <li>
+                                    <a href={% url 'my_track' %}>我的轨迹</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'my_track_in_' %}>我的轨迹(全)</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'track_total' %}>智能轨迹预测</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'my_track_login' %}>登录</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'my_track_register' %}>注册</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- /top menu -->
+                </nav>
+            </header>
+        </div>
+
+
+        <div class="content_block">
+            <!-- top_title -->
+            <div class="top_title">
+                <div class="wraper">
+
+                    <h2>功能介绍
+                        <span>这是功能介绍页面</span>
+                    </h2>
+                </div>
+            </div>
+            <!-- /top_title -->
+            <div class="wraper">
+                <!-- portfolio_sidebar -->
+                <div class="portfolio_sidebar">
+                    <ul class="gallery">
+                        <li>
+                            <div class="desc">
+                                <h5 class="bord" id="zhineng">智能可视化 </h5>
+                                <p>在智能可视化界面，可视化采用的为世界地图，重点对国内各地区的疫情情况进行可视化展示。</p>
+                                <div class="img bwWrapper">
+                                    <img src="../static/images/help/智能可视化01.png" width="641" height="266" alt="" />
+                                </div>
+                                <p>地图中地点可以细化到省市区镇乡村以及各个国道及主干街道。（以河北省唐山市路北区某一区域为例）</p>
+                                <div class="img bwWrapper">
+                                    <img src="../static/images/help/智能可视化04.png" width="641" height="266" alt="" />
+                                </div>
+                                <p>地图搜集从2020年2月1日起每日的全国疫情数据，并用热力图形式显示，以颜色警示疫情严重程度，红色表示疫情高风险集中点，周围扩散影响地点为中高风险地区，中低风险地区，低风险地区分别用黄色，绿色，蓝色表示。（以2021年1月1日河北省石家庄某地区为例）</p>
+                                <div class="img bwWrapper">
+                                    <img src="../static/images/help/智能可视化03.png" width="641" height="266" alt="" />
+                                </div>
+                                <p>用户可通过对地图进行操作，获取全国实时疫情情况，以及历史疫情情况。通过地图左上角加减符号实现地图的缩放；通过拖动地图下方日期进度条选择地图展示对应日期疫情情况；通过拖动fps进度条调整图片缩放的画质流畅度。通过智可视化地图，用户可以方便快捷的掌握疫情情况，从一定程度上指导出行者规划安全的出行路线，防止健康人员进入疫情高危区，降低被传染风险。</p>
+
+                                <p>
+                                    <a class="read_more btn_col" href={% url 'our_track_heat' %}>前往</a>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="desc">
+                                <h5 class="bord" id="guiji">轨迹连线</h5>
+                                <p>在轨迹连线界面，将患者的移动轨迹作为疫情的传播路径，患者在被确诊前，身上携带有新冠肺炎病毒，其移动轨迹中随时会传播给别人，因此将新乐市、辛集市、栾城区、建通街道、裕华区等石家庄市中心作为疫情风险较为严重的地点，请大家注意防范.</p>
+                                <p>
+                                    <a class="read_more btn_col" href={% url 'our_track_in_line' %}>前往</a>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="desc">
+                                <h5 class="bord" id="yiqingshuju">疫情数据可视化</h5>
+                                <p>在疫情数据可视化界面，通过爬取当天全国疫情数据，进行可视化界面展示，用户可以方便快捷获取当日国内疫情情况，了解疫情走势及当前高风险省份。</p>
+                                <div class="img bwWrapper">
+                                    <img src="../static/images/help/疫情数据可视化.png" width="641" height="266" alt="" />
+                                </div>
+                                <p>
+                                    <a class="read_more btn_col" href={% url 'statistic_data' %}>前往</a>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="desc">
+                                <h5 class="bord" id="guijishuju">轨迹数据可视化</h5>
+                                <p>在轨迹数据可视化界面，将患者的移动轨迹作为疫情的传播路径，患者在被确诊前，身上携带有新冠肺炎病毒，其移动轨迹中随时会传播给别人，因此将新乐市、辛集市、栾城区、建通街道、裕华区等石家庄市中心作为疫情风险较为严重的地点，请大家注意防范。</p>
+                                <p>
+                                    <a class="read_more btn_col" href='a8_Track_Chart.html'>前往</a>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="desc">
+                                <h5 class="bord" id="yujing">人员查询</h5>
+                                <p>在人员查询界面，管理员可以查询当前数据库内所有密接，患病，正常人员姓名，用户编号，手机号等信息；管理员可以实时将新用户状态信息录入到数据库内。</p>
+                                <div class="img bwWrapper">
+                                    <img src="../static/images/help/人员查询01.png" width="641" height="300" alt="" />
+                                </div>
+                                <p>
+                                    <a class="read_more btn_col" href={% url 'personnel_search_with_status' %}>前往</a>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="desc">
+                                <h5 class="bord" id="LSTM">智能轨迹预测</h5>
+                                <p>在智能轨迹预测界面，右侧有四个查询交互式按钮，分别为查看交叉轨迹，查看自己轨迹，查看，查看预测轨迹。</p>
+                                <div class="img bwWrapper">
+                                    <img src="../static/images/help/智能轨迹预测01.png" width="641" height="266" alt="" />
+                                </div>
+                                <p>点击查看自己轨迹按钮，在地图上显示用户行动轨迹用红蓝线表示。</p>
+                                <div class="img bwWrapper">
+                                    <img src="../static/images/help/智能轨迹预测05.png" width="641" height="266" alt="" />
+                                </div>
+                                <p>点击查看按钮，可以查询特定起止日期的轨迹情况，并可视化展示。</p>
+                                <div class="img bwWrapper">
+                                    <img src="../static/images/help/智能轨迹预测02.png" width="641" height="266" alt="" />
+                                </div>
+                                <p>点击查看交叉轨迹按钮，可以显示当前用户轨迹是否与患者存在轨迹交叉，绿色线条表示当前患者轨迹。</p>
+                                <div class="img bwWrapper">
+                                    <img src="../static/images/help/智能轨迹预测06.png" width="641" height="266" alt="" />
+                                </div>
+                                   <p>点击查看预测的轨迹按钮，可以显示当患者未来可能前往的轨迹路线，用红色线条表示。</p>
+                                <div class="img bwWrapper">
+                                    <img src="../static/images/help/智能轨迹预测07.png" width="641" height="266" alt="" />
+                                </div>
+                                <p>
+                                    <a class="read_more btn_col" href={% url 'track_total' %}>前往</a>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="desc">
+                                <h5 class="bord" id="wode">我的轨迹</h5>
+                                <p>在我的轨迹界面，显示24小时内活动轨迹。其中如果两个小时内未离开某地，则将此地标记为停留点。同时根据用户活动区域展示该地区疫情近期情况与高风险地点，预警用户做好个人防护。</p>
+                                <div class="img bwWrapper">
+                                    <img src="../static/images/help/个人轨迹03.png" width="641" height="266" alt="" />
+                                </div>
+                                <div class="img bwWrapper">
+                                    <img src="../static/images/help/个人轨迹01.png" width="641" height="266" alt="" />
+                                </div>
+                                <div class="img bwWrapper">
+                                    <img src="../static/images/help/个人轨迹02.png" width="641" height="266" alt="" />
+                                </div>
+                                <p>
+                                    <a class="read_more btn_col" href={% url 'my_track' %}>前往</a>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="desc">
+                                <h5 class="bord" id="denglu">登录</h5>
+                                <p>在登录界面，已有账号用户可以直接通过账号密码登录。</p>
+                                <div class="img bwWrapper">
+                                    <img src="../static/images/help/个人登录.png" width="641" height="266" alt="" />
+                                </div>
+                                <p>
+                                    <a class="read_more btn_col" href={% url 'my_track_login' %}>前往</a>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="desc">
+                                <h5 class="bord" id="zhuce">注册</h5>
+                                <p>在注册界面，未有账号用户，可以申请账号。</p>
+                                <div class="img bwWrapper">
+                                    <img src="../static/images/help/个人登录.png" width="641" height="266" alt="" />
+                                </div>
+                                <p>
+                                    <a class="read_more btn_col" href={% url 'my_track_register' %}>前往</a>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- /portfolio_sidebar -->
+                <!-- sidebar -->
+                <div class="sidebar">
+                    <!-- most popular -->
+                    <div class="most_popular">
+                        <h4>功能介绍栏</h4>
+                        <ul>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/地图.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#zhineng">智能可视化</a>
+                                        </strong>
+                                    </p>
+
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/轨迹.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#guiji">轨迹连线</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/疫情管理.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#yiqingshuju">疫情数据可视化</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/轨迹图.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#guijishuju">轨迹数据可视化</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/预警.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#yujing">人员查询</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/预测引擎.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#LSTM">智能轨迹预测</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/我的.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#wode">我的轨迹</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/登录.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#denglu">登录</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/注册.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#zhuce">注册</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <!-- /sidebar -->
+                <div class="sidebar">
+                    <!-- most popular -->
+                    <div class="most_popular">
+                        <h4>功能介绍栏</h4>
+                        <ul>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/地图.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#zhineng">智能可视化</a>
+                                        </strong>
+                                    </p>
+
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/轨迹.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#guiji">轨迹连线</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/疫情管理.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#yiqingshuju">疫情数据可视化</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/轨迹图.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#guijishuju">轨迹数据可视化</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/预警.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#yujing">人员查询</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/预测引擎.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#LSTM">智能轨迹预测</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/我的.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#wode">我的轨迹</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/登录.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#denglu">登录</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/注册.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#zhuce">注册</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <!-- /sidebar -->
+                <div class="sidebar">
+                    <!-- most popular -->
+                    <div class="most_popular">
+                        <h4>功能介绍栏</h4>
+                        <ul>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/地图.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#zhineng">智能可视化</a>
+                                        </strong>
+                                    </p>
+
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/轨迹.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#guiji">轨迹连线</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/疫情管理.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#yiqingshuju">疫情数据可视化</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/轨迹图.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#guijishuju">轨迹数据可视化</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/预警.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#yujing">人员查询</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/预测引擎.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#LSTM">智能轨迹预测</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/我的.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#wode">我的轨迹</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/登录.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#denglu">登录</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/注册.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#zhuce">注册</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <!-- /sidebar -->
+                <div class="sidebar">
+                    <!-- most popular -->
+                    <div class="most_popular">
+                        <h4>功能介绍栏</h4>
+                        <ul>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/地图.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#zhineng">智能可视化</a>
+                                        </strong>
+                                    </p>
+
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/轨迹.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#guiji">轨迹连线</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/疫情管理.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#yiqingshuju">疫情数据可视化</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/轨迹图.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#guijishuju">轨迹数据可视化</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/预警.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#yujing">人员查询</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/预测引擎.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#LSTM">智能轨迹预测</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/我的.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#wode">我的轨迹</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/登录.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#denglu">登录</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/注册.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#zhuce">注册</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <!-- /sidebar -->
+                <div class="sidebar">
+                    <!-- most popular -->
+                    <div class="most_popular">
+                        <h4>功能介绍栏</h4>
+                        <ul>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/地图.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#zhineng">智能可视化</a>
+                                        </strong>
+                                    </p>
+
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/轨迹.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#guiji">轨迹连线</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/疫情管理.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#yiqingshuju">疫情数据可视化</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/轨迹图.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#guijishuju">轨迹数据可视化</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/预警.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#yujing">人员查询</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/预测引擎.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#LSTM">智能轨迹预测</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/我的.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#wode">我的轨迹</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/登录.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#denglu">登录</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/注册.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#zhuce">注册</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <!-- /sidebar -->
+                <div class="sidebar">
+                    <!-- most popular -->
+                    <div class="most_popular">
+                        <h4>功能介绍栏</h4>
+                        <ul>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/地图.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#zhineng">智能可视化</a>
+                                        </strong>
+                                    </p>
+
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/轨迹.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#guiji">轨迹连线</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/疫情管理.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#yiqingshuju">疫情数据可视化</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/轨迹图.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#guijishuju">轨迹数据可视化</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/预警.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#yujing">人员查询</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/预测引擎.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#LSTM">智能轨迹预测</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/我的.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#wode">我的轨迹</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/登录.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#denglu">登录</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="bwWrapper">
+                                    <img src="../static/images/help/注册.png" width="60" height="55" alt="" />
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        <strong>
+                                            <a href="#zhuce">注册</a>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <!-- /sidebar -->
+
+            </div>
+        </div>
+        <!-- footer -->
+        <!-- social block -->
+        <div class="social_block">
+            <div class="wraper">
+
+            </div>
+        </div>
+        <!-- /social block -->
+
+        <div class="footer">
+            <footer>
+                <!-- bottom about -->
+                <div class="bottom_about">
+                    <p>
+                        <img style="height: 100%;width: 100%" src="../static/images/logo1.png" alt="11111" />
+                    </p>
+                    <p>为了方便疫情期间管理工作的展开，引导人们的出行安全，疫情防控预警系统为此而建立。
+                        通过数据采集，融合数据分析，排查和可视化智能解析。
+                        对用户出行进行直接引导，做到有效的对疫情进行实时监管，控制疫情，保护人们的健康安全。</p>
+                </div>
+                <!-- /bottom about -->
+                <!-- recent tweets -->
+                <div class="recent_tweets">
+                    <h3>
+                        <span>最近更新</span>
+                    </h3>
+                    <ul>
+                        <li>
+                            <a href="https://github.com/colsons">@colsons</a>增加首页板块
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- /recent tweets -->
+                <!-- recent posts -->
+                <div class="recent_posts">
+                    <h3>
+                        <span>新加功能</span>
+                    </h3>
+                    <ul>
+                        <li>
+                            <a href="#">新的功能，个人轨迹可视化</a>
+                        </li>
+                        <li>
+                            <a href="#">新的功能，预警热力图</a>
+                        </li>
+                        <li>
+                            <a href="#">新的功能，全局轨迹图</a>
+                        </li>
+                        <li>
+                            <a href="#">新的功能，文本详细说明</a>
+                        </li>
+                        <li>
+                            <a href="#">新的功能，文本详细说明</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /recent posts -->
+                <!-- subscribe block -->
+                <div class="subscribe_block">
+                    <h3>
+                        <span>加入我们</span>
+                    </h3>
+                    <form method="post" action="#" />
+                    <p>
+                        <input type="text" id="name" value="NAME ..." />
+                    </p>
+                    <p>
+                        <input type="text" id="email" value="EMAIL ..." />
+                    </p>
+                    <p>
+                        <input type="submit" value="提交" />
+                    </p>
+                    </form>
+                </div>
+                <!-- /subscribe block -->
+            </footer>
+        </div>
+
+        <!-- copyright -->
+        <div class="copyright">
+            <div class="wraper">
+                <p>
+                    <span>测试版</span>v 0.01<a href="#">RSS</a>
+                    <a href="#">Comments</a>
+                </p>
+                <a class="top" href="#">Back to the top</a>
+            </div>
+        </div>
+        <!-- /copyright -->
+        <!-- /footer -->
+    </body>
+
+</html>

@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <title>防控管理侠 | 人员查询</title>
+        <link rel="icon" type="image/png" href="/static/images/favicon.ico" />
+        <link rel="apple-touch-icon" href="/static/images/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/static/images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/static/images/apple-touch-icon-114x114.png" />
+        <!--[if lt IE 9]>
+    <script src="/static/scripts/ie9.js">IE7_PNG_SUFFIX = ".png";</script>
+    <![endif]-->
+        <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet'
+              type='text/css' />
+        <link rel="stylesheet" href="/static/stylesheets/style.css" />
+        <link rel="stylesheet" href="/static/stylesheets/responsive.css" />
+        <script src="/static/scripts/jquery.min.js"></script>
+        <script src="/static/scripts/jquery.onebyone.min.js"></script>
+        <script src="/static/scripts/jquery.cookie.js"></script>
+        <script src="/static/scripts/jquery.touchwipe.min.js"></script>
+        <script src="/static/scripts/js_func.js"></script>
+        <script src="/static/scripts/admin_account_judge.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            table {
+            min-width: 800px;
+            width: 120%;
+            height: 80%;
+            font-size: 20px;
+        }
+        td{
+            height: 40px;
+        }
+        th{
+            height: 50px;
+        }
+        span,option,input,select{
+            font-size: 18px;
+        }
+        canvas{
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+    </head>
+    <body>
+        <div class="wraper">
+            <header class="header">
+                <a class="logo" href={% url 'home' %}>construct</a>
+                <nav>
+                    <!-- top menu -->
+                    <ul>
+                        <li>
+                            <a href={% url 'home' %}>首页</a>
+                        </li>
+
+                        <li id=LiInsert>
+                            <a href={% url 'personnel_search_with_status' %}>人员查询</a>
+                            <ul>
+                                <li>
+                                    <a href={% url 'our_track_heat' %}>智能可视化</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'our_track_in_heat' %}>智能可视化(全)</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'our_track_line' %}>轨迹连线</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'our_track_in_line' %}>轨迹连线(全)</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'statistic_data' %}>疫情数据可视化</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'personnel_search_with_status' %}>人员查询</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href={% url 'function_introduction' %}>功能介绍</a>
+                        </li>
+                        <li>
+                            <a href={% url 'my_track' %}>个人轨迹</a>
+                            <ul>
+                                <li>
+                                    <a href={% url 'my_track' %}>我的轨迹</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'my_track_in_' %}>我的轨迹(全)</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'track_total' %}>智能轨迹预测</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'my_track_login' %}>登录</a>
+                                </li>
+                                <li>
+                                    <a href={% url 'my_track_register' %}>注册</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- /top menu -->
+                </nav>
+            </header>
+        </div>
+
+        <!-- 导航头栏 -->
+        <div class="wraper">
+            <div class="fallback">
+                <img src="../static/images/sliders/home_page_3/home_page_3_fallback.jpg" alt="" />
+            </div>
+            <div id="piecemaker">
+                <!--<p>Put your alternative Non Flash content here.</p>-->
+            </div>
+        </div>
+        <!-- /piecemaker slider -->
+
+        <div class="content_block">
+            <!-- text bar2 -->
+            <div class="text_bar2">
+                <div class="wraper">
+                    <h2>人员状态查询及更新<span>查询患者密接人员数据，提前做好防控准备。</span>
+                    </h2>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!--正文-->
+        <div class="content_block">
+            <div class="wraper wraper_typ">
+
+                <div class="headings">
+                    <h3 class="bord">查询状态</h3>
+                    <ul>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div>
+                                <span>状态:</span>
+                                <select name="status" class="form-control" style="width:200px;">
+                                    <option>请选择</option>
+                                    <option>正常</option>
+                                    <option>密接</option>
+                                    <option>患病</option>
+                                </select>
+                                <input type="submit" value="查询">
+                            </div>
+                        </form>
+                        <h1> </h1>
+                        <h1> </h1>
+                        <h1> </h1>
+                        <h3 class="bord">更新状态</h3>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div>
+                                <span>用户编号:</span>
+                                <input type="text" name="user_id">
+                                <span>状态:</span>
+                                <select name="changed_status" class="form-control" style="width:200px;">
+                                    <option>请选择</option>
+                                    <option>正常</option>
+                                    <option>密接</option>
+                                    <option>患病</option>
+                                </select>
+                                <input type="submit" value="提交">
+                            </div>
+                        </form>
+                        {% if flag == 1 %}
+                        <h1> </h1>
+                        <h1> </h1>
+                        <h1> </h1>
+                        <h3>查询结果</h3>
+                        <div>
+                            <table border="1" cellpadding="10" align="center">
+                                <thread>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>姓名</th>
+                                        <th>电话号码</th>
+                                        <th>用户编号</th>
+                                        <th>状态</th>
+                                    </tr>
+                                </thread>
+                                <tbody id="contain"></tbody>
+                            </table>
+                        </div>
+                        <script type="text/javascript">
+                            var arr = {{result_data|safe}};
+                                            var str = '';
+                                            //外层循环,生成tr
+                                            for (var i = 0; i <= arr.length - 1; i++) {
+                                                // 外层循环生成tr标签,循环几次,就生成几个tr标签
+                                                // 因为tr标签中还要有td内容,要将两个tr标签,分开,写成拼接的形式
+                                                str += '<tr>';
+                            
+                                                // 第一个单元格是单独生成的,不参与内层循环,是 当前 外层循环 索引下标+1
+                                                str += `<td align="center">${i + 1}</td>`;
+                            
+                                                //当前行,对应的二维数组，循环的对象是 arr[i] , 
+                                                //生成 arr[i] 的所有的索引下标，通过索引下标,获取对应的数据。
+                                                // 起始数值是0 终止数值是 arr[i]的最大索引下标，arr[i]的length-1
+                                                for (var j = 0; j <= arr[i].length - 1; j++) {
+                                                    // 每一个单元的内容,就是当前二维数组单元的数据内容
+                                                    // 获取二维数组, 数组变量[一维索引][二维索引] 一维索引是i 二维索引是j
+                                                    str += `<td align="center">${arr[i][j]}</td>`;
+                                                }
+                                                str += '</tr>';
+                                            }
+                                            // 将定义好的内容,写入到taody标签中
+                                            contain.innerHTML = str;
+                        </script>
+                        <h1> </h1>
+                        <h1> </h1>
+                        <h1> </h1>
+                        <h3 class="bord">数据统计</h3>
+                        <div height="400" width="600">
+                            <canvas id="chart"> 你的浏览器不支持HTML5 canvas </canvas>
+                        </div>
+                        <script type="text/javascript">
+        // 设置函数
+        function goChart(dataArr){
+            
+            // 声明所需变量
+            var canvas,ctx;
+            // 图表属性
+            var cWidth, cHeight, cMargin, cSpace;
+            // 饼状图属性
+            var radius,ox,oy;//半径 圆心
+            var tWidth, tHeight;//图例宽高
+            var posX, posY, textX, textY;
+            var startAngle, endAngle;
+            var totleNb;
+            // 运动相关变量
+            var ctr, numctr, speed;
+            //鼠标移动
+            var mousePosition = {};
+            
+            //线条和文字
+            var lineStartAngle,line,textPadding,textMoveDis;
+        
+            // 获得canvas上下文
+            canvas = document.getElementById("chart");
+            if(canvas && canvas.getContext){
+                ctx = canvas.getContext("2d");
+            }
+            initChart(); 
+            
+            // 图表初始化
+            function initChart(){
+                // 图表信息
+                cMargin = 20;
+                cSpace = 40;
+                
+                canvas.width = canvas.parentNode.getAttribute("width")* 2 ;
+                canvas.height = canvas.parentNode.getAttribute("height")* 2;
+                canvas.style.height = canvas.height/2 + "px";
+                canvas.style.width = canvas.width/2 + "px";
+                cHeight = canvas.height - cMargin*2;
+                cWidth = canvas.width - cMargin*2;
+        
+                //饼状图信息
+                radius = cHeight*2/6;  //半径  高度的2/6
+                ox = canvas.width/2 + cSpace;  //圆心
+                oy = canvas.height/2;
+                tWidth = 60; //图例宽和高
+                tHeight = 20; 
+                posX = cMargin;
+                posY = cMargin;   //
+                textX = posX + tWidth + 15
+                textY = posY + 18;
+                startAngle = endAngle = 90*Math.PI/180; //起始弧度 结束弧度
+                rotateAngle = 0; //整体旋转的弧度
+    
+                //将传入的数据转化百分比
+                totleNb = 0;
+                new_data_arr = [];
+                for (var i = 0; i < dataArr.length; i++){
+                    totleNb += dataArr[i][0];
+                }
+                for (var i = 0; i < dataArr.length; i++){
+                    new_data_arr.push( dataArr[i][0]/totleNb );
+                }
+                totalYNomber = 10;
+                // 运动相关
+                ctr = 1;//初始步骤
+                numctr = 50;//步骤
+                speed = 1.2; //毫秒 timer速度
+                
+                //指示线 和 文字
+                lineStartAngle = -startAngle;
+                line=40;         //画线的时候超出半径的一段线长
+                textPadding=10;  //文字与线之间的间距
+                textMoveDis = 200; //文字运动开始的间距
+            }
+        
+            drawMarkers();
+            //绘制比例图及文字
+            function drawMarkers(){
+                ctx.textAlign="left";
+                for (var i = 0; i < dataArr.length; i++){
+                    //绘制比例图及文字
+                    ctx.fillStyle = dataArr[i][1];
+                    ctx.fillRect(posX, posY + 40 * i, tWidth, tHeight);
+                    ctx.moveTo(posX, posY + 40 * i);
+                    ctx.font = 'normal 24px 微软雅黑';    //斜体 30像素 微软雅黑字体
+                    ctx.fillStyle = dataArr[i][1]; //"#000000";
+                    var percent = dataArr[i][2] + "：" + parseInt(100 * new_data_arr[i]) + "%";
+                    ctx.fillText(percent, textX, textY + 40 * i);
+                }
+            };
+            
+            //绘制动画
+            pieDraw();
+            function pieDraw(mouseMove){
+                
+                for (var n = 0; n < dataArr.length; n++){
+                    ctx.fillStyle = ctx.strokeStyle = dataArr[n][1];
+                    ctx.lineWidth=1;
+                    var step = new_data_arr[n]* Math.PI * 2; //旋转弧度
+                    var lineAngle = lineStartAngle+step/2;   //计算线的角度
+                    lineStartAngle += step;//结束弧度
+                    
+                    ctx.beginPath();
+                    var  x0=ox+radius*Math.cos(lineAngle),//圆弧上线与圆相交点的x坐标
+                         y0=oy+radius*Math.sin(lineAngle),//圆弧上线与圆相交点的y坐标
+                         x1=ox+(radius+line)*Math.cos(lineAngle),//圆弧上线与圆相交点的x坐标
+                         y1=oy+(radius+line)*Math.sin(lineAngle),//圆弧上线与圆相交点的y坐标
+                         x2=x1,//转折点的x坐标
+                         y2=y1,
+                         linePadding=ctx.measureText(dataArr[n][2]).width+10; //获取文本长度来确定折线的长度
+                         
+                         ctx.moveTo(x0,y0);
+                         //对x1/y1进行处理，来实现折线的运动
+                         yMove = y0+(y1-y0)*ctr/numctr;
+                         ctx.lineTo(x1,yMove);
+                         if(x1<=x0){
+                             x2 -= line;
+                             ctx.textAlign="right";
+                             ctx.lineTo(x2-linePadding,yMove);
+                            ctx.fillText(dataArr[n][2],x2-textPadding-textMoveDis*(numctr-ctr)/numctr,y2-textPadding);
+                         }else{
+                             x2 += line;
+                             ctx.textAlign="left";
+                             ctx.lineTo(x2+linePadding,yMove);
+                            ctx.fillText(dataArr[n][2],x2+textPadding+textMoveDis*(numctr-ctr)/numctr,y2-textPadding);
+                         }
+                         
+                        ctx.stroke();
+                        
+                }
+                
+                //设置旋转
+                ctx.save();
+                ctx.translate(ox, oy);
+                ctx.rotate((Math.PI*2/numctr)*ctr/2);
+                
+                //绘制一个圆圈
+                ctx.strokeStyle = "rgba(0,0,0,"+ 0.5*ctr/numctr +")"
+                ctx.beginPath();
+                ctx.arc(0, 0 ,(radius+20)*ctr/numctr, 0, Math.PI*2, false);
+                ctx.stroke();
+                
+                for (var j = 0; j < dataArr.length; j++){
+                    
+                    //绘制饼图
+                    endAngle = endAngle + new_data_arr[j]* ctr/numctr * Math.PI * 2; //结束弧度
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(0,0); //移动到到圆心
+                    ctx.arc(0, 0, radius*ctr/numctr, startAngle, endAngle, false); //绘制圆弧
+                    
+                    ctx.fillStyle = dataArr[j][1];
+                    if(mouseMove && ctx.isPointInPath(mousePosition.x*2, mousePosition.y*2)){
+                        ctx.globalAlpha = 0.8;
+                    }
+                    
+                      ctx.closePath();
+                      ctx.fill();
+                    ctx.globalAlpha = 1;
+                    
+                    startAngle = endAngle; //设置起始弧度
+                    if( j == dataArr.length-1 ){
+                        startAngle = endAngle = 90*Math.PI/180; //起始弧度 结束弧度
+                    }
+                }
+                
+                ctx.restore();
+                    
+                if(ctr<numctr){
+                    ctr++;
+                    setTimeout(function(){
+                        //ctx.clearRect(-canvas.width,-canvas.width,canvas.width*2, canvas.height*2);
+                        ctx.clearRect(-canvas.width, -canvas.height,canvas.width*2, canvas.height*2);
+                        drawMarkers();
+                        pieDraw();
+                    }, speed*=1.085);
+                }
+            }
+            
+            //监听鼠标移动
+            var mouseTimer = null;
+            canvas.addEventListener("mousemove",function(e){
+                e = e || window.event;
+                if( e.offsetX || e.offsetX==0 ){
+                    mousePosition.x = e.offsetX;
+                    mousePosition.y = e.offsetY;
+                }else if( e.layerX || e.layerX==0 ){
+                    mousePosition.x = e.layerX;
+                    mousePosition.y = e.layerY;
+                }
+                
+                clearTimeout(mouseTimer);
+                mouseTimer = setTimeout(function(){
+                    ctx.clearRect(0,0,canvas.width, canvas.height);
+                    drawMarkers();
+                    pieDraw(true);
+                },10);
+            });
+            
+        }
+        
+        
+        // 导入数据[数据，颜色，名称]，
+        var normal = {{normal}};
+        var trouble = {{trouble}};
+        var dangerous = {{dangerous}};
+        var chartData = [[normal,"#2dc6c8","正常"], [trouble,"#b6a2dd", "密接"],[dangerous,"#62bb59","患病"]];
+        
+        goChart(chartData);
+
+
+    </script>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <footer>
+                <!-- bottom about -->
+                <div class="bottom_about">
+                    <p>
+                        <img style="height: 100%;width: 100%" src="/static/images/logo1.png" alt="" />
+                    </p>
+                    <p>为了方便疫情期间管理工作的展开，引导人们的出行安全，疫情防控预警系统为此而建立。
+                        通过数据采集，融合数据分析，排查和可视化智能解析。
+                        对用户出行进行直接引导，做到有效的对疫情进行实时监管，控制疫情，保护人们的健康安全。</p>
+                </div>
+                <!-- /bottom about -->
+                <!-- recent tweets -->
+                <div class="recent_tweets">
+                    <h3>
+                        <span>最近更新</span>
+                    </h3>
+                    <ul>
+                        <li>
+                            <a href="#">@laurakalbag</a>暂无
+                        </li>
+                        {# <li>
+                            <a href="#">@laurakalbag</a> I will be very soon. Ase result reco endation <a href="#">31 minutes#}
+                                {# ago</a>
+                        </li>#}
+                        {# <li>
+                            <a href="#">@laurakalbag</a> you got chocolates!? That's i I'm signing up. <a href="#">37 minutes#}
+                                {# ago</a>
+                        </li>#}
+                    </ul>
+                </div>
+                <!-- /recent tweets -->
+                <!-- recent posts -->
+                <div class="recent_posts">
+                    <h3>
+                        <span>新加功能</span>
+                    </h3>
+                    <ul>
+                        <li>
+                            <a href="#">新的功能，文本详细说明</a>
+                        </li>
+                        <li>
+                            <a href="#">新的功能，文本详细说明</a>
+                        </li>
+                        <li>
+                            <a href="#">新的功能，文本详细说明</a>
+                        </li>
+                        <li>
+                            <a href="#">新的功能，文本详细说明</a>
+                        </li>
+                        <li>
+                            <a href="#">新的功能，文本详细说明</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /recent posts -->
+                <!-- subscribe block -->
+                <div class="subscribe_block">
+                    <h3>
+                        <span>加入我们</span>
+                    </h3>
+                    <form method="post" action="#" />
+                    <p>
+                        <input type="text" id="name" value="NAME ..." />
+                    </p>
+                    <p>
+                        <input type="text" id="email" value="EMAIL ..." />
+                    </p>
+                    <p>
+                        <input type="submit" value="提交" />
+                    </p>
+                    </form>
+                </div>
+                <!-- /subscribe block -->
+            </footer>
+        </div>
+
+        <!-- copyright -->
+        <div class="copyright">
+            <div class="wraper">
+                <p>
+                    <span>测试版</span>v 0.01<a href="#">RSS</a>
+                    <a href="#">Comments</a>
+                </p>
+                <a class="top" href="#">Back to the top</a>
+            </div>
+        </div>
+        <!-- /copyright -->
+        <!-- /footer -->
+    </body>
+
+</html>

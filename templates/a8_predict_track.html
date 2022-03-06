@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        L_NO_TOUCH = false;
+                    L_DISABLE_3D = false;
+    </script>
+    <title>防控管理侠 | 智能轨迹预测</title>
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.js"></script>
+    <script charset="utf-8">
+        $(document).ready(function() {
+                $("#search-btn").click(function() {
+                    var start_date = $("#start_date").val()
+                    var end_date = $("#end_date").val()
+                    alert(start_date)
+                    $.ajax({
+                        url: "/get_searched_data/",
+                        type: "get",
+                        dataType: "json",  // 返回的数据格式
+                        async: true,  // 异步的ajax
+                        data : {"start_date": start_date, "end_date" : end_date},
+                        success: function(res) {
+                            console.log(res["searched_data"])
+                            try{
+                            plot(res["searched_data"],res["user_length"]);
+                            alert("绘制完毕");
+                            }
+                            catch(err){
+                                alert("未在该时间段内查询到有效轨迹数据!");
+                            }
+                            
+                        }
+                    })
+                });
+        
+            });
+            function plot(data,length) {
+                    L.polyline(data, {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 3}).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+                    L.polyline(data,{"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2,"dashArray":'5'}
+                        ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+                    //用户轨迹icon
+                    //非模拟数据情况:显示每个点
+                    if (!user_simulated_flag){
+                        for (i = 0;i<user_length;i++){
+                        var marker = L.marker(
+                                data[i],
+                                {}
+                            ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+                        var popup = L.popup({"maxWidth": 2650});
+                        var html_content = $(`<div id="html_content" style="width: 100.0%; height: 100.0%;"><b>地点: ${track_name[i]}<br>时间: ${track_time[i]}</b></div>`)[0];
+                        popup.setContent(html_content);
+                        marker.bindPopup(popup);
+                        }
+                    }
+                    //模拟数据情况:只显示起点和终点
+                    else{
+                        var marker_start = L.marker(
+                            data[0],
+                            {}
+                        ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+        
+                        var marker_end = L.marker(
+                            data[user_length-1],
+                            {}
+                        ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+                        var popup_start = L.popup({"maxWidth": 2650});
+                        var popup_end = L.popup({"maxWidth": 2650});
+                        var html_content_start = $(`<div id="html_content" style="width: 100.0%; height: 100.0%;"><b>地点: ${track_name[0]}<br>时间: ${track_time[0]}</b></div>`)[0];
+                        var html_content_end = $(`<div id="html_content" style="width: 100.0%; height: 100.0%;"><b>地点: ${track_name[user_length-1]}<br>时间: ${track_time[user_length-1]}</b></div>`)[0];
+                        popup_start.setContent(html_content_start);
+                        popup_end.setContent(html_content_end);
+                        marker_start.bindPopup(popup_start);
+                        marker_end.bindPopup(popup_end);
+                    }
+                return "Yes";
+            }
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css" />
+
+    <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!-- 地图框架的css形式 -->
+    <style>
+        /* map_a47f1830696e42a9b23e9f7b4248d891   地图代码 */
+                #map_a47f1830696e42a9b23e9f7b4248d891 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                    z-index:1;   
+                    /* z-index表示图层在上在下，数字越小图层越往下 */
+                }
+            </style>
+
+
+    <style>
+        /* 黑色背景布 */
+        .black_overlay{
+        display: none;
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        z-index:1001;
+        -moz-opacity: 0.8;
+        opacity:.80;
+        filter: alpha(opacity=80);
+        }
+        /* 白色背景布 */
+        .white_content {
+        display: none;
+        position: absolute;
+        top: 10%;
+        left: 10%;
+        width: 80%;
+        height: 80%;
+        border: 16px solid lightblue;
+        background-color: white;
+        z-index:1002;
+        overflow: auto;
+        }
+    </style>
+    <style>
+        #MyDiv{
+            text-align: center;
+            width:420px;
+            height:230px;
+            margin-top:20px;
+            position:fixed;
+            right:100px
+        }
+        /* .container {
+      
+        } */
+    </style>
+
+</head>
+
+
+<!-- myfunction函数参数解释：
+re：模式选择，决定系统进行什么操作，如查看自己的轨迹
+dan：危险参数，若为1表示危险 -->
+
+<script type="text/javascript">
+    function getCookie(cookie_name) {
+            var allcookies = document.cookie;
+            //索引长度，开始索引的位置
+            var cookie_pos = allcookies.indexOf(cookie_name);
+            //给value初始值为false
+            var value = false;
+            // 如果找到了索引，就代表cookie存在,否则不存在
+            if (cookie_pos != -1) {
+                // 把cookie_pos放在值的开始，只要给值加1即可
+                //计算取cookie值得开始索引，加的1为“=”
+                cookie_pos = cookie_pos + cookie_name.length + 1; 
+                //计算取cookie值得结束索引
+                var cookie_end = allcookies.indexOf(";", cookie_pos);
+                
+                if (cookie_end == -1) {
+                    cookie_end = allcookies.length;
+    
+                }
+                //得到想要的cookie的值
+                var value = unescape(allcookies.substring(cookie_pos, cookie_end)); 
+            }
+            return value;
+        }
+</script>
+<!-- 弹窗的css样式 -->
+<script>
+    var dan_flag = {{cross_flag}};
+        var data = {{data}};
+        var patient_data = {{pat_data}};
+        var cross_flag = {{cross_flag}};
+        var track_name = {{track_name|safe}};
+        var track_time = {{track_time|safe}};
+        var patient_track_name = {{patient_track_name|safe}};
+        var patient_track_time = {{patient_track_time|safe}};
+        var user_length = {{user_length}};
+        var user_simulated_flag = {{user_simulated_flag}};
+        var patient_length = {{patient_length}};
+        var predict_length = {{predict_length}};
+        var predict_data = {{predict_data}};
+        var patient_simulated_flag = {{patient_simulated_flag}};
+        const cookieValue = getCookie('user');
+    
+        function myFunction(re,dan){          
+            // 函数;
+            if(re == 1)      // 查看交叉轨迹
+            {   
+                if (!cookieValue){
+                    alert("登陆后才可以查看轨迹信息!");
+                }
+                else{
+                    if(dan == 1)
+                        alert("你好，检测到您最近曾到过危险地区，请注意！");
+                    // 
+                    else
+                        alert("成功查询交叉轨迹，疫情期间，请注意安全！");
+    
+                    //这里画病患轨迹
+                    L.polyline(
+                        patient_data,
+                        {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+                    ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+                    //病患轨迹icon
+                    //非模拟数据情况:显示每个点
+                    if (!patient_simulated_flag){
+                        for (i = 0;i<patient_length;i++){
+                        var marker = L.marker(
+                                patient_data[i],
+                                {}
+                            ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+                        var popup = L.popup({"maxWidth": 2650});
+                        var html_content = $(`<div id="html_content" style="width: 100.0%; height: 100.0%;"><b>地点: ${patient_track_name[i]}<br>时间: ${patient_track_time[i]}</b></div>`)[0];
+                        popup.setContent(html_content);
+                        marker.bindPopup(popup);
+                        }
+                    }
+                    //模拟数据情况:只显示起点和终点
+                    else{
+                        var marker_start = L.marker(
+                            patient_data[0],
+                            {}
+                        ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+    
+                        var marker_end = L.marker(
+                            patient_data[patient_length-1],
+                            {}
+                        ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+                        var popup_start = L.popup({"maxWidth": 2650});
+                        var popup_end = L.popup({"maxWidth": 2650});
+                        var html_content_start = $(`<div id="html_content" style="width: 100.0%; height: 100.0%;"><b>地点: ${patient_track_name[0]}<br>时间: ${patient_track_time[0]}</b></div>`)[0];
+                        var html_content_end = $(`<div id="html_content" style="width: 100.0%; height: 100.0%;"><b>地点: ${patient_track_name[patient_length-1]}<br>时间: ${patient_track_time[patient_length-1]}</b></div>`)[0];
+                        popup_start.setContent(html_content_start);
+                        popup_end.setContent(html_content_end);
+                        marker_start.bindPopup(popup_start);
+                        marker_end.bindPopup(popup_end);
+                    }
+                    //用户轨迹
+                    L.polyline(
+                        data,
+                        {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+                    ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+                    //用户轨迹虚线
+                    L.polyline(
+                        data,
+                        {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2,"dashArray":'5'}
+                    ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+                    //用户轨迹icon
+                    //非模拟数据情况:显示每个点
+                    if (!user_simulated_flag){
+                        for (i = 0;i<user_length;i++){
+                        var marker = L.marker(
+                                data[i],
+                                {}
+                            ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+                        var popup = L.popup({"maxWidth": 2650});
+                        var html_content = $(`<div id="html_content" style="width: 100.0%; height: 100.0%;"><b>地点: ${track_name[i]}<br>时间: ${track_time[i]}</b></div>`)[0];
+                        popup.setContent(html_content);
+                        marker.bindPopup(popup);
+                        }
+                    }
+                    //模拟数据情况:只显示起点和终点
+                    else{
+                        var marker_start = L.marker(
+                            data[0],
+                            {}
+                        ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+    
+                        var marker_end = L.marker(
+                            data[user_length-1],
+                            {}
+                        ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+                        var popup_start = L.popup({"maxWidth": 2650});
+                        var popup_end = L.popup({"maxWidth": 2650});
+                        var html_content_start = $(`<div id="html_content" style="width: 100.0%; height: 100.0%;"><b>地点: ${track_name[0]}<br>时间: ${track_time[0]}</b></div>`)[0];
+                        var html_content_end = $(`<div id="html_content" style="width: 100.0%; height: 100.0%;"><b>地点: ${track_name[user_length-1]}<br>时间: ${track_time[user_length-1]}</b></div>`)[0];
+                        popup_start.setContent(html_content_start);
+                        popup_end.setContent(html_content_end);
+                        marker_start.bindPopup(popup_start);
+                        marker_end.bindPopup(popup_end);
+                    }
+                }
+    
+            }
+            else if(re == 2)            //查看自身轨迹 
+            {   
+                if (!cookieValue){
+                    alert("登陆后才可以查看轨迹信息!");
+                }
+                else{
+                   alert("已成功显示您近期的轨迹，近期疫情危险，请注意自身安全！"); 
+                if(dan == 1)
+                    alert("您好，检测到您最近曾到过危险地区，请注意！建议查看是否与病患存在交叉轨迹。");  
+                // 自身轨迹点
+    
+                //这里的data通过views.py传参
+                
+                L.polyline(
+                    data,
+                    {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+                ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+                
+                L.polyline(
+                    data,
+                    {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2,"dashArray":'5'}
+                ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+    
+                //非模拟数据情况:每个点都显示
+                if (!user_simulated_flag){
+                    for (i = 0;i<user_length;i++){
+                    var marker = L.marker(
+                            data[i],
+                            {}
+                        ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+                    var popup = L.popup({"maxWidth": 2650});
+                    var html_content = $(`<div id="html_content" style="width: 100.0%; height: 100.0%;"><b>地点: ${track_name[i]}<br>时间: ${track_time[i]}</b></div>`)[0];
+                    popup.setContent(html_content);
+                    marker.bindPopup(popup);
+                    }
+                }
+                //模拟数据情况:只显示起点和终点
+                else{
+                    var marker_start = L.marker(
+                        data[0],
+                        {}
+                    ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+    
+                    var marker_end = L.marker(
+                        data[user_length-1],
+                        {}
+                    ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+                    var popup_start = L.popup({"maxWidth": 2650});
+                    var popup_end = L.popup({"maxWidth": 2650});
+                    var html_content_start = $(`<div id="html_content" style="width: 100.0%; height: 100.0%;"><b>地点: ${track_name[0]}<br>时间: ${track_time[0]}</b></div>`)[0];
+                    var html_content_end = $(`<div id="html_content" style="width: 100.0%; height: 100.0%;"><b>地点: ${track_name[user_length-1]}<br>时间: ${track_time[user_length-1]}</b></div>`)[0];
+                    popup_start.setContent(html_content_start);
+                    popup_end.setContent(html_content_end);
+                    marker_start.bindPopup(popup_start);
+                    marker_end.bindPopup(popup_end);
+                }
+                }
+    
+            }
+            else if (re == 3){
+                if (!cookieValue){
+                    alert("登陆后才可以查看轨迹信息!");
+                }
+                else{
+                    alert("已成功显示病患的预测轨迹"); 
+                //这里画的是用户轨迹
+                L.polyline(
+                        data,
+                        {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+                    ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+    
+                L.polyline(
+                    data,
+                    {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2,"dashArray":'5'}
+                    ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+    
+                    //用户轨迹icon
+                    //非模拟数据情况:显示每个点
+                    if (!user_simulated_flag){
+                        for (i = 0;i<user_length;i++){
+                        var marker = L.marker(
+                                data[i],
+                                {}
+                            ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+                        var popup = L.popup({"maxWidth": 2650});
+                        var html_content = $(`<div id="html_content" style="width: 100.0%; height: 100.0%;"><b>地点: ${track_name[i]}<br>时间: ${track_time[i]}</b></div>`)[0];
+                        popup.setContent(html_content);
+                        marker.bindPopup(popup);
+                        }
+                    }
+                    //模拟数据情况:只显示起点和终点
+                    else{
+                        var marker_start = L.marker(
+                            data[0],
+                            {}
+                        ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+    
+                        var marker_end = L.marker(
+                            data[user_length-1],
+                            {}
+                        ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+                        var popup_start = L.popup({"maxWidth": 2650});
+                        var popup_end = L.popup({"maxWidth": 2650});
+                        var html_content_start = $(`<div id="html_content" style="width: 100.0%; height: 100.0%;"><b>地点: ${track_name[0]}<br>时间: ${track_time[0]}</b></div>`)[0];
+                        var html_content_end = $(`<div id="html_content" style="width: 100.0%; height: 100.0%;"><b>地点: ${track_name[user_length-1]}<br>时间: ${track_time[user_length-1]}</b></div>`)[0];
+                        popup_start.setContent(html_content_start);
+                        popup_end.setContent(html_content_end);
+                        marker_start.bindPopup(popup_start);
+                        marker_end.bindPopup(popup_end);
+                    }
+    
+                //这里画的是病患轨迹
+    
+                L.polyline(
+                        patient_data,
+                        {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+                ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+    
+                    //病患轨迹icon
+                    //非模拟数据情况:显示每个点
+                    if (!patient_simulated_flag){
+                        for (i = 0;i<patient_length;i++){
+                        var marker = L.marker(
+                                patient_data[i],
+                                {}
+                            ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+                        var popup = L.popup({"maxWidth": 2650});
+                        var html_content = $(`<div id="html_content" style="width: 100.0%; height: 100.0%;"><b>地点: ${patient_track_name[i]}<br>时间: ${patient_track_time[i]}</b></div>`)[0];
+                        popup.setContent(html_content);
+                        marker.bindPopup(popup);
+                        }
+                    }
+                    //模拟数据情况:只显示起点和终点
+                    else{
+                        var marker_start = L.marker(
+                            patient_data[0],
+                            {}
+                        ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+    
+                        var marker_end = L.marker(
+                            patient_data[patient_length-1],
+                            {}
+                        ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+                        var popup_start = L.popup({"maxWidth": 2650});
+                        var popup_end = L.popup({"maxWidth": 2650});
+                        var html_content_start = $(`<div id="html_content" style="width: 100.0%; height: 100.0%;"><b>地点: ${patient_track_name[0]}<br>时间: ${patient_track_time[0]}</b></div>`)[0];
+                        var html_content_end = $(`<div id="html_content" style="width: 100.0%; height: 100.0%;"><b>地点: ${patient_track_name[patient_length-1]}<br>时间: ${patient_track_time[patient_length-1]}</b></div>`)[0];
+                        popup_start.setContent(html_content_start);
+                        popup_end.setContent(html_content_end);
+                        marker_start.bindPopup(popup_start);
+                        marker_end.bindPopup(popup_end);
+                    }
+                //这里画的是预测轨迹
+                L.polyline(
+                        predict_data,
+                        {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+                    ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+    
+                var marker = L.marker(
+                        predict_data[0],
+                        {}
+                    ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+                        var popup = L.popup({"maxWidth": 2650});
+                        var html_content = $(`<div id="html_content" style="width: 100.0%; height: 100.0%;"><b>地点: ${patient_track_name[patient_length-1]}<br>时间: ${patient_track_time[patient_length-1]}</b></div>`)[0];
+                        popup.setContent(html_content);
+                        marker.bindPopup(popup);
+    
+                //这里将断点连接起来(由于预测的数据是倒序排放的，所以要把两段路径的终点连接在一起，而不是起点连终点)
+                L.polyline(
+                        [patient_data[patient_length-1],predict_data[predict_length-1]],
+                        {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+                    ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+                }
+            }
+        }
+</script>
+
+
+
+<!-- 弹窗样式——时间弹窗 -->
+<script type="text/javascript">
+    //弹出隐藏层
+        function ShowDiv(show_div,bg_div){
+        if (!cookieValue){
+            alert("登陆后才可以查看轨迹信息!")
+        }
+        else{
+            document.getElementById(show_div).style.display='block';
+            document.getElementById(bg_div).style.display='block' ;
+            var bgdiv = document.getElementById(bg_div);
+            bgdiv.style.width = document.body.scrollWidth;
+            // bgdiv.style.height = $(document).height();
+            $("#"+bg_div).height($(document).height());
+            };
+        }
+        
+        //关闭弹出层
+        function CloseDiv(show_div,bg_div)
+        {
+        document.getElementById(show_div).style.display='none';
+        document.getElementById(bg_div).style.display='none';
+        };
+</script>
+
+<!-- 时间选择样式 -->
+<script type="text/javascript">
+    let date = new Date()
+        let yyyy = date.getFullYear()
+        let MM = (date.getMonth() + 1) < 10 ? ("0" + (date.getMonth() + 1)) : (date.getMonth() + 1)
+        let dd = date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate()
+        let HH = date.getHours() < 10 ? ("0" + date.getHours()) : date.getHours()
+        let mm = date.getMinutes() < 10 ? ("0" + date.getMinutes()) : date.getMinutes()
+        let curDay = yyyy + '-' + MM + '-' + dd + 'T' + HH + ':' + mm;
+        $('.measureDate').val(curDay)
+        console.log(date)
+</script>
+
+<body>
+    <div class="folium-map" id="map_a47f1830696e42a9b23e9f7b4248d891"></div>
+
+    <!-- 弹窗设置 -->
+    <div id="fade" class="black_overlay"></div>
+    <div id="MyDiv" class="white_content" style="text-align: center;">
+        <div style="text-align: right; cursor: default;height: 5px;" id="move">
+            <span style="font-size: 16px;" onclick="CloseDiv('MyDiv','fade')">关闭</span>
+        </div>
+        <br>
+        <br>
+        <!-- <span>起始时间：<input type="text" placeholder="起始时间"></span><br>
+        <span>结束时间：<input type="password" placeholder="输入密码"></span><br> -->
+        <!-- <input type="button" value="时间选择" id="login"> -->
+        <span>起始时间</span>
+        <input type="datetime-local" class="measureDate" placeholder="请选择起始日期" id="start_date">
+        <br>
+        <span>结束时间</span>
+        <input type="datetime-local" class="measureDate" placeholder="请选择结束日期" id="end_date">
+        <br>
+        <br>
+        <input type="button" value="查询" id="search-btn">
+    </div>
+
+    <div id="NavTop">
+        <div id="NavCon">
+
+            <ul>
+                <!-- li标签将其框起来，形成点击框；a标签加href加onclick形成点击弹窗框 -->
+                <!-- <li><a href="#">查看近期情况</a></li>   实例：定义一个点击框 -->
+                <li>
+                    <a href="javascript:void(0)" onclick="myFunction(1,dan_flag)">查看交叉轨迹</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" onclick="myFunction(2,dan_flag)">查看自己的轨迹</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" onclick="ShowDiv('MyDiv','fade')">查看</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" onclick="myFunction(3,dan_flag)">查看预测的轨迹</a>
+                </li>
+                <!-- <li><a href="javascript:void(0)" onclick="alert('方式1, 执行一段代码.')">情形1: </a> </li> -->
+
+            </ul>
+        </div>
+    </div>
+
+
+</body>
+<!-- 地图及轨迹点绘制代码 -->
+<script>
+    var map_a47f1830696e42a9b23e9f7b4248d891 = L.map(
+                "map_a47f1830696e42a9b23e9f7b4248d891",
+                {
+                    center: [40.112482, 116.366833],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 15,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            var tile_layer_035ba65d707c4f5aa0d0c1207c0f0d4b = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+        
+    
+            var tile_layer_25612c1a37a646d8af93d41c2056b6ef = L.tileLayer(
+                "http://webrd02.is.autonavi.com/appmaptile?lang=zh_cn\u0026size=1\u0026scale=1\u0026style=8\u0026x={x}\u0026y={y}\u0026z={z}",
+                {"attribution": "\u0026copy; \u003ca href=http://ditu.amap.com/\u003e\u9ad8\u5fb7\u5730\u56fe\u003c/a\u003e", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_a47f1830696e42a9b23e9f7b4248d891);
+
+</script>
+
+<!--外观格式渲染 -->
+<style type="text/css">
+    *{margin:0px; padding:0px; }
+        /* body{
+                background:#000;
+        } */
+        #NavTop{
+                width:140px;
+                height:270px;
+                margin-top:50px;
+                position:fixed;    right:0px;top:150px; z-index:2;       /*固定位置,右浮动，距上150px*/
+        }
+        /* #map_a47f1830696e42a9b23e9f7b4248d891{
+    
+        } */
+        /* #NavTop #NavCon{
+                        width:140px;
+                        height:270px;
+                        background:url('images/d.png') repeat-y;
+                        position:relative;
+                        border:1px solid black;
+        } */
+        #NavTop #NavCon img.banner{
+                                    position:absolute;
+                                    left:25px;
+                                    top:-40px;
+        }
+        #NavTop #NavCon ul{
+                            margin-top:40px;
+        }
+        #NavTop #NavCon ul li a{
+                                text-decoration:none;
+                                color:#fff;
+                                width:105px;
+                                height:30px;
+                                background:#555;
+                                display:block;
+                                margin-top:10px;
+                                margin-left:20px;
+                                line-height:30px;
+                                text-align:center;
+                                font-family:"微软雅黑";
+                                font-size:14px;
+        }
+        #NavTop #NavCon ul li a:hover{
+                                        background:#cc0066;
+        }
+        #NavTop #NavCon img.bottom{
+                                    margin-top:15px;
+        }
+        p{color:red;}
+</style>
+</html>

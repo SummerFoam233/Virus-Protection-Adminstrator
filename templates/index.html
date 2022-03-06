@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>防控管理侠 | 首页</title>
+
+    <link rel="apple-touch-icon" href="/static/images/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/static/images/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/static/images/apple-touch-icon-114x114.png" />
+    <!--[if lt IE 9]>
+    <script src="/static/scripts/ie9.js">IE7_PNG_SUFFIX = ".png";</script>
+    <![endif]-->
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet'
+        type='text/css' />
+    <link rel="stylesheet" href="/static/stylesheets/style.css" />
+    <link rel="stylesheet" href="/static/stylesheets/responsive.css" />
+    <link rel="stylesheet" href="/static/stylesheets/jquery.onebyone.css" />
+    <script src="/static/scripts/jquery.min.js"></script>
+    <script src="/static/scripts/jquery.onebyone.min.js"></script>
+    <script src="/static/scripts/jquery.cookie.js"></script>
+    <script src="/static/scripts/jquery.touchwipe.min.js"></script>
+    <script src="/static/scripts/js_func.js"></script>
+    <script src="/static/scripts/admin_account_judge.js"></script>
+    <script>
+        $(function () {
+            $('#obo_slider').oneByOne({
+                className: 'oneByOne1',
+                easeType: 'random',
+                slideShow: true
+            });
+
+        })
+    </script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+    <div class="wraper">
+    <header class="header">
+        <a class="logo" href={% url 'home' %}>construct</a>
+        <nav>
+            <!-- top menu -->
+            <ul>
+                <li><a href={% url 'home' %}>首页</a></li>
+
+                <li id=LiInsert><a href={% url 'our_track_heat' %}>智能可视化</a>
+                    <ul>
+                        <li><a href={% url 'our_track_heat' %}>智能可视化</a></li>
+                        <li><a href={% url 'our_track_in_heat' %}>智能可视化(全)</a></li>
+                        <li><a href={% url 'our_track_line' %}>轨迹连线</a></li>
+                        <li><a href={% url 'our_track_in_line' %}>轨迹连线(全)</a></li>
+                        <li><a href={% url 'statistic_data' %}>疫情数据可视化</a></li>
+                        <li><a href={% url 'personnel_search_with_status' %}>人员查询</a></li>
+                      </ul>
+                    </li>
+                  <li><a href={% url 'function_introduction' %}>功能介绍</a>
+                  </li>
+                  <li><a href={% url 'my_track' %}>个人轨迹</a>
+                      <ul>
+                          <li><a href={% url 'my_track' %}>我的轨迹</a></li>
+                          <li><a href={% url 'my_track_in_' %}>我的轨迹(全)</a></li>
+                          <li><a href={% url 'track_total' %}>智能轨迹预测</a></li>
+                          <li><a href={% url 'my_track_login' %}>登录</a></li>
+                          <li><a href={% url 'my_track_register' %}>注册</a></li>
+                      </ul>
+                  </li>
+              </ul>
+            <!-- /top menu -->
+        </nav>
+    </header>
+</div>
+
+    <!-- one bt one slider -->
+    <div class="wrape homeone">
+        <div class="fallback"><img src="/static/images/sliders/home_page_1/home_page_1_fallback.jpg" alt="" /></div>
+        <div id="obo_slider">
+            <div class="oneByOne_item">
+                <img src="/static/images/sliders/home_page_1/home_adv11.jpg" class="wp1_3 slide1_bot" alt="" />
+                <span class="txt1">App与网页双端访问</span>
+                <span class="txt2">科学数据分析</span>
+                <span class="txt1 short">风险预警与智能可视化分析</span>
+                <span class="txt4 txt4up"><a href="#" class="btn_l">现在加入我们!</a></span>
+            </div>
+            <div class="oneByOne_item">
+                <img src="/static/images/sliders/home_page_7/home_adv2.png" class="wp1_3 wp1_left slide2_bot" alt="" />
+                <span class="txt1 txt_right2">地区实时风险预警</span>
+                <span class="txt2 txt_right2">周遭风险区</span>
+                <span class="txt2 txt_right2">疫情|预警</span>
+                <span class="txt4 txt_right2 txt4up"><a href={% url 'our_track_in_heat' %} class="btn_l">查 看 具 体 图
+                        ！</a></span>
+            </div>
+
+            <div class="oneByOne_item">
+                <img src="/static/images/sliders/home_page_7/home_adv3.png" class="wp1_3 slide2_bot" alt="" />
+                <span class="txt1">危险路径分析</span>
+                <span class="txt2">轨迹连线</span>
+                <span class="txt3">全局疑似病例分析，危险警告！</span>
+                <span class="txt4"><a href={% url 'our_track_in_line' %} class="btn_l">查 看 最 新 ！</a></span>
+            </div>
+
+            <div class="oneByOne_item">
+                <img src="/static/images/sliders/home_page_7/home7_slide_4.png" class="wp1_3 slide3_bot" alt="" />
+                <span class="txt1">数据预测分析</span>
+                <span class="txt2">轨迹 预警</span>
+                <span class="txt1">采用数据预测分析算法大数据分析</span>
+                <span class="txt4 txt4up"><a href="#" class="btn_l">Purchase Now!</a></span>
+            </div>
+
+        </div>
+    </div>
+    <!-- /one bt one slider -->
+
+    <div class="content_block">
+        <!-- text bar -->
+        {# <div class="text_bar">#}
+            {# <div class="wraper">#}
+                {# <a class="buy btn_l" href="#">Buy Construct!</a>#}
+                {# <div class="widget">#}
+                    {# <h3>Construct Is Flexible</h3>#}
+                    {# </div>#}
+                {# </div>#}
+            {# </div>#}
+
+        <!-- /text bar -->
+        <div class="wraper">
+            <!-- features_block -->
+            <div class="features_block">
+                <ul>
+                    <li class="design">
+                        <a class="circle_link" href="#">&nbsp;</a>
+                        <h4><span>数据整理</span></h4>
+                        <p>整理无规则数据，整合，集成为统一数据。</p>
+                    </li>
+                    <li class="flexible">
+                        <a class="circle_link" href="#">&nbsp;</a>
+                        <h4><span>云数据库</span></h4>
+                        <p>将数据存储于云端，保证分离操作，数据高效使用。</p>
+                    </li>
+                    <li class="support">
+                        <a class="circle_link" href="#">&nbsp;</a>
+                        <h4><span>大数据分析</span></h4>
+                        <p>采用数据挖掘的不同分析算法，展示数据的分析结果。</p>
+                    </li>
+                    <li class="easy">
+                        <a class="circle_link" href="#">&nbsp;</a>
+                        <h4><span>风险预警</span></h4>
+                        <p>采用机器学习的预测分析算法对疫情走势分析。</p>
+                    </li>
+                    <li class="seo">
+                        <a class="circle_link" href="#">&nbsp;</a>
+                        <h4><span>智能可视化</span></h4>
+                        <p>对一些数据的分析结果进行统计学分析，对数据进行智能可视化解析。</p>
+                    </li>
+                </ul>
+            </div>
+            <!-- /features_block -->
+        </div>
+    </div>
+
+    <!-- footer -->
+    <!-- social block -->
+    <div class="social_block">
+        <div class="wraper">
+            {# <p>Stay connected with us in your favorite flavor!</p>#}
+            {# <ul>#}
+                {# <li class="facebook"><a href="#">Facebook</a></li>#}
+                {# <li class="twitter"><a href="#">Twitter</a></li>#}
+                {# <li class="linkedin"><a href="#">LinkedIn</a></li>#}
+                {# <li class="rss"><a href="#">RSS</a></li>#}
+                {# <li class="dribbble"><a href="#">Dribbble</a></li>#}
+                {# <li class="google"><a href="#">Google+</a></li>#}
+                {# </ul>#}
+        </div>
+    </div>
+    <!-- /social block -->
+
+    <div class="footer">
+        <footer>
+            <!-- bottom about -->
+            <div class="bottom_about">
+                <p><img style="height: 100%;width: 100%" src="/static/images/logo1.png" alt="" /></p>
+                <p>为了方便疫情期间管理工作的展开，引导人们的出行安全，疫情防控预警系统为此而建立。
+                    通过数据采集，融合数据分析，排查和可视化智能解析。
+                    对用户出行进行直接引导，做到有效的对疫情进行实时监管，控制疫情，保护人们的健康安全。</p>
+            </div>
+            <!-- /bottom about -->
+            <!-- recent tweets -->
+            <div class="recent_tweets">
+                <h3><span>最近更新</span></h3>
+                <ul>
+                    <li><a href="https://github.com/colsons">@colsons</a>增加首页板块</li>
+
+                </ul>
+            </div>
+            <!-- /recent tweets -->
+            <!-- recent posts -->
+            <div class="recent_posts">
+                <h3><span>新加功能</span></h3>
+                <ul>
+                    <li><a href="#">新的功能，个人轨迹可视化</a></li>
+                    <li><a href="#">新的功能，预警热力图</a></li>
+                    <li><a href="#">新的功能，全局轨迹图</a></li>
+                    <li><a href="#">新的功能，文本详细说明</a></li>
+                    <li><a href="#">新的功能，文本详细说明</a></li>
+                </ul>
+            </div>
+            <!-- /recent posts -->
+            <!-- subscribe block -->
+            <div class="subscribe_block">
+                <h3><span>加入我们</span></h3>
+                <form method="post" action="#" />
+                <p><input type="text" id="name" value="NAME ..." /></p>
+                <p><input type="text" id="email" value="EMAIL ..." /></p>
+                <p><input type="submit" value="提交" /></p>
+                </form>
+            </div>
+            <!-- /subscribe block -->
+        </footer>
+    </div>
+
+    <!-- copyright -->
+    <div class="copyright">
+        <div class="wraper">
+            <p><span>测试版</span>v 0.01<a href="#">RSS</a><a href="#">Comments</a></p>
+            <a class="top" href="#">Back to the top</a>
+        </div>
+    </div>
+    <!-- /copyright -->
+    <!-- /footer -->
+</body>
+
+</html>
